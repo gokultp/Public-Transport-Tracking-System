@@ -1,0 +1,61 @@
+extends layout
+block usr
+  if(user)
+    a.navbar-brand(href='/')  #{user.username}
+  if(!user)
+    a.navbar-brand(href='/') Admin
+block content
+  br
+  br
+  br
+  if(busStops)
+    table(width= "100%")
+      thead
+        tr
+        th Bus Stop Name
+        th Latitude
+        th Longitude
+      tbody
+          for stop in busStops
+              tr
+                  td= stop.name
+                  td= stop.lat
+                  td= stop.lng
+  
+  .container
+  script.
+     function drop(){
+
+      document.getElementById("lat").value = marker.getPosition().lat();
+      document.getElementById("lng").value = marker.getPosition().lng();
+
+      document.getElementById("map").style.display = "none";
+      }
+ 
+  #map
+     #panel(style="margin-left: -52px")
+         button#drop(onclick="drop()") Done
+     #map-canvas
+ 
+
+ 
+
+    h1 Add Bus Stops
+    br
+    form(role='form', action="/busstop",method="post", style='max-width: 300px;')
+      .form-group
+        input.form-control(type='text', name="name",placeholder='Enter Name Of Bus Stop')
+      table
+        tr
+         td
+          .form-group
+            input.form-control(type='text', name="lat", id="lat", placeholder='Latitude') 
+          td
+            img(src="images/map.png", onclick="document.getElementById('map').style.display = 'block';",style="display:inline;",width="32")
+      .form-group
+        input.form-control(type='text', name="lng", id="lng", placeholder='Longitude')
+      
+      button.btn.btn-default(type='submit') Submit
+      &nbsp;
+      a(href='/')
+        button.btn.btn-primary(type="button") Cancel

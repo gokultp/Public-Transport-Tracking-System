@@ -1,0 +1,17 @@
+
+block content
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    
+    extends layout
+    p You are currently logged in as #{user.username}
+
+block usr
+  if(user)
+    a.navbar-brand(href='/')  #{user.name}
+  if(!user)
+    a.navbar-brand(href='/') Admin
+    

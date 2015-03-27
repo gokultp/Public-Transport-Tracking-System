@@ -1,0 +1,21 @@
+#map{
+    display:none;
+    width:70%;
+    height:70%;
+    left:15%;
+    top:15%;
+    position:absolute;
+    z-index:9;
+    box-shadow:10px 10px 10px #222;
+    padding:5px;
+    overflow:hide;
+    border-radius:5px;
+    background-color:#eee;
+}
+
+#map-canvas{
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+}
+
